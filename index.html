@@ -51,6 +51,17 @@ body{min-height:100vh} a,button{font:inherit}
 .routeBtns{padding:0 14px 18px}.routeBtn{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 12px;margin-bottom:7px;font-size:11px;font-weight:800}.routeBtn span{color:var(--blue)}
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);height:70px;padding:6px 8px calc(env(safe-area-inset-bottom) + 6px);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,252,247,.96);backdrop-filter:blur(18px);border-top:1px solid #e4ded7;z-index:90}.nav{border:0;background:transparent;color:#66717c;font-size:9px}.nav b{display:block;font-size:19px;margin-bottom:2px}.nav.active{color:var(--blue);font-weight:900}
 .noteBox{background:#fff4e6;border:1px solid #edd8b9;border-radius:14px;padding:11px;margin:10px 14px;font-size:10px;line-height:1.45;color:#6b4b22}
+
+.routeSection{padding:0 14px 10px}
+.routeCard{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;margin-bottom:10px;box-shadow:var(--shadow)}
+.routeCard h3{font-family:Georgia,serif;font-size:15px;margin:0 0 5px}
+.routeCard .routeMeta{font-size:9px;color:var(--muted);margin-bottom:7px}
+.routeSteps{margin:7px 0 9px;padding-left:18px}.routeSteps li{font-size:10px;line-height:1.45;margin:3px 0}
+.routeActions{display:flex;gap:6px;flex-wrap:wrap}
+.bookBtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.bookBtn{display:inline-flex;align-items:center;text-decoration:none;padding:7px 10px;border-radius:999px;background:#e7f3ff;color:#0f66bd;font-size:9px;font-weight:850}
+.bookBtn.cal{background:#edf7ef;color:#258c50}
+.bookBtn.site{background:#f4eef2;color:#8d1739}
 </style>
 </head>
 <body>
@@ -146,15 +157,16 @@ body{min-height:100vh} a,button{font:inherit}
   </div>
 </section>
 
+
 <section id="bookings" class="page">
-  <div class="head"><h1>Prenotazioni</h1><p>Tutto il viaggio, date e orari</p></div>
+  <div class="head"><h1>Prenotazioni</h1><p>Tocca Maps o Calendario: ogni scheda ora ha azioni funzionanti</p></div>
   <div class="list">
-    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Arcada</h3><p>30 OTT · 20:00 · cena</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
-    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Château Lynch-Bages</h3><p>31 OTT · 09:00 · Premium Visit</p><div class="status">✓ Confermato</div></div><div>›</div></div>
-    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Café Lavinal</h3><p>31 OTT · 12:15 · 2 persone</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
-    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Le Pressoir d’Argent</h3><p>31 OTT · 21:00 · cena</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
-    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Cité du Vin</h3><p>1 NOV · 11:00–14:00</p><div style="font-size:9px;color:#b36c0d;font-weight:800">● Da prenotare</div></div><div>›</div></div>
-    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Lume</h3><p>1 NOV · 19:30 · 3 rue des Faussets</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Arcada</h3><p>30 OTT · 20:00 · cena</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Arcada%20Restaurant%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-1.ics">+ Calendario</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Château Lynch-Bages</h3><p>31 OTT · 09:00 · Premium Visit</p><div class="status">✓ Confermato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-2.ics">+ Calendario</a><a class="bookBtn site" href="https://www.lynchbages.com/en/visiter/">Sito</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Café Lavinal</h3><p>31 OTT · 12:15 · 2 persone</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Lavinal%2C%20Bages%2C%20Pauillac%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-3.ics">+ Calendario</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Le Pressoir d’Argent</h3><p>31 OTT · 21:00 · cena</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Le%20Pressoir%20d%27Argent%20Gordon%20Ramsay%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-4.ics">+ Calendario</a><a class="bookBtn site" href="https://bordeaux.intercontinental.com/en/le-pressoir-dargent-gordon-ramsay/">Sito</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Cité du Vin</h3><p>1 NOV · 11:00–14:00</p><div style="font-size:9px;color:#b36c0d;font-weight:800">● Da prenotare</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-5.ics">+ Calendario</a><a class="bookBtn site" href="https://www.laciteduvin.com/">Sito</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Lume</h3><p>1 NOV · 19:30 · 3 rue des Faussets</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Lume%2C%203%20Rue%20des%20Faussets%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-6.ics">+ Calendario</a></div></div><div>›</div></div>
   </div>
 </section>
 
@@ -180,26 +192,58 @@ body{min-height:100vh} a,button{font:inherit}
   </div>
 </section>
 
+
 <section id="map" class="page">
-  <div class="head"><h1>Mappa del viaggio</h1><p>Bordeaux e percorso nel Médoc</p></div>
-  <div class="mapPanel">
-    <div class="river"></div><div class="road"></div>
-    <div class="pin" style="left:44%;top:42px"></div><div class="mlabel" style="left:51%;top:38px">Saint-Estèphe</div>
-    <div class="pin" style="left:40%;top:94px"></div><div class="mlabel" style="left:47%;top:90px">Pauillac / Bages</div>
-    <div class="pin" style="left:47%;top:155px"></div><div class="mlabel" style="left:54%;top:151px">Lamarque</div>
-    <div class="pin" style="left:49%;top:211px"></div><div class="mlabel" style="left:56%;top:207px">Margaux</div>
-    <div class="pin" style="left:52%;top:280px"></div><div class="mlabel" style="left:59%;top:276px">Bordeaux</div>
+  <div class="head"><h1>Mappa & Percorsi</h1><p>Ogni percorso è separato e mostra chiaramente partenza, tappe e arrivo</p></div>
+
+  <div class="routeSection">
+    <div class="routeCard">
+      <h3>Venerdì · Bordeaux a piedi</h3>
+      <div class="routeMeta">Due percorsi distinti, da usare uno dopo l’altro</div>
+      <ol class="routeSteps">
+        <li><b>Percorso 1:</b> Cathédrale Saint-André → rue Bouffard → rue des Remparts → Librairie Mollat → cours de l’Intendance → rue Sainte-Catherine</li>
+        <li><b>Percorso 2:</b> Place Fernand-Lafargue → Grosse Cloche → Saint-Éloi → Porte Cailhau → Place Camille Jullian</li>
+      </ol>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France%7CLibrairie%20Mollat%2C%20Bordeaux%2C%20France%7CCours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France">Apri percorso 1</a><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">Apri percorso 2</a></div>
+    </div>
+
+    <div class="routeCard">
+      <h3>Sabato mattina · Bordeaux → Lynch-Bages</h3>
+      <div class="routeMeta">Partenza INDIGO Tourny · arrivo Château Lynch-Bages</div>
+      <ol class="routeSteps"><li>INDIGO Tourny</li><li>Château Lynch-Bages, Pauillac</li></ol>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving">Apri in Google Maps</a></div>
+    </div>
+
+    <div class="routeCard">
+      <h3>Sabato · Médoc NORD</h3>
+      <div class="routeMeta">Dopo Café Lavinal · tratto panoramico 1</div>
+      <ol class="routeSteps"><li>Château Lynch-Bages</li><li>Château Mouton Rothschild</li><li>Château Lafite Rothschild</li><li>Château Cos d’Estournel</li><li>Saint-Estèphe</li></ol>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France">Apri Médoc Nord</a></div>
+    </div>
+
+    <div class="routeCard">
+      <h3>Sabato · Médoc CENTRO</h3>
+      <div class="routeMeta">Tratto panoramico 2</div>
+      <ol class="routeSteps"><li>Saint-Estèphe</li><li>Saint-Julien-Beychevelle</li><li>Cussac-Fort-Médoc</li><li>Lamarque</li></ol>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France%7CCussac-Fort-M%C3%A9doc%2C%20France">Apri Médoc Centro</a></div>
+    </div>
+
+    <div class="routeCard">
+      <h3>Sabato · Médoc SUD → Bordeaux</h3>
+      <div class="routeMeta">Ultimo tratto · rientro al Tourny</div>
+      <ol class="routeSteps"><li>Lamarque</li><li>Château Margaux</li><li>Labarde</li><li>INDIGO Tourny, Bordeaux</li></ol>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France%7CLabarde%2C%20France">Apri Médoc Sud</a></div>
+    </div>
+
+    <div class="routeCard">
+      <h3>Lunedì · Tourny → Aeroporto</h3>
+      <div class="routeMeta">Rientro auto · BOD</div>
+      <ol class="routeSteps"><li>INDIGO Tourny</li><li>Bordeaux Airport</li></ol>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving">Apri percorso aeroporto</a></div>
+    </div>
   </div>
-  <div class="routeBtns">
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving">Bordeaux → Lynch-Bages <span>Maps ›</span></a>
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France">Route des Châteaux · Nord <span>Maps ›</span></a>
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France%7CCussac-Fort-M%C3%A9doc%2C%20France">Route des Châteaux · Centro <span>Maps ›</span></a>
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France%7CLabarde%2C%20France">Route des Châteaux · Sud <span>Maps ›</span></a>
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France%7CLibrairie%20Mollat%2C%20Bordeaux%2C%20France%7CCours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France">Passeggiata Bordeaux 1 <span>Maps ›</span></a>
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">Passeggiata Bordeaux 2 <span>Maps ›</span></a>
-    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving">Tourny → Aeroporto <span>Maps ›</span></a>
-  </div>
-  <div class="noteBox"><b>Link Maps:</b> sono normali collegamenti HTTPS, senza popup e senza JavaScript. Il service worker non intercetta siti esterni.</div>
+
+  <div class="noteBox"><b>Importante:</b> ho eliminato la mappa stilizzata che poteva creare confusione. Ora ogni tratta è descritta in testo e ha il proprio pulsante Google Maps.</div>
 </section>
 
 <nav class="bottom">
