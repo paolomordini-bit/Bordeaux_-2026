@@ -80,7 +80,7 @@ body{min-height:100vh} a,button{font:inherit}
     <div class="todayCard">
       <div class="todayTop"><div><div class="todayDate">📅 VIAGGIO</div><div class="todayRoute">Bordeaux → Médoc → Bordeaux</div></div><img src="dining.jpg" style="width:70px;height:54px;object-fit:cover;border-radius:50%" alt=""></div>
       <div style="font-size:10px;color:#6c7782;margin-top:6px">Master operativo completo · prenotazioni, orari e percorsi</div>
-      <div class="progress"><i></i></div>
+      <div class="progress"><i id="tripProgress"></i></div>
     </div>
   </div>
   <div class="quick">
@@ -103,66 +103,91 @@ body{min-height:100vh} a,button{font:inherit}
 
 <section id="d1" class="page">
   <div class="detailHero"><img src="bordeaux.jpg" alt=""><button class="back" data-go="days">‹</button></div>
-  <div class="detailTitle"><h2>Venerdì 30 ottobre<br>Arrivo a Bordeaux</h2><p>Primo giorno: centro storico e cena da Arcada</p></div>
+  <div class="detailTitle"><h2>Venerdì 30 ottobre<br>Arrivo a Bordeaux</h2><p>Centro storico, due percorsi a piedi e cena da Arcada</p></div>
   <div class="timeline">
-    <div class="stop car"><div class="time">08:50</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arrivo a Bordeaux</h4><p>Aeroporto BOD</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop car"><div class="time">09:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ritiro auto</h4><p>Aeroporto Bordeaux-Mérignac</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop hotel"><div class="time">10:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Hôtel Majestic</h4><p>Scarico bagagli · 2 rue de Condé</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop car"><div class="time">11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>INDIGO Tourny</h4><p>Parcheggio prenotato fino al 2 novembre 11:30</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop"><div class="time">11:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Basilique Saint-Seurin</h4><p>Visita 40–45 min</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Seurin%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop"><div class="time">14:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Cathédrale Saint-André</h4><p>Poi percorso nel centro elegante</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France%7CLibrairie%20Mollat%2C%20Bordeaux%2C%20France%7CCours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France">Percorso 1</a></div></div></div>
-    <div class="stop"><div class="time">16:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Bordeaux rinascimentale</h4><p>Grosse Cloche → Saint-Éloi → Porte Cailhau → Camille Jullian</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">⌖ Apri percorso</a></div></div></div>
-    <div class="stop"><div class="time">18:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Place de la Bourse</h4><p>Miroir d’Eau e quais</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Place%20de%20la%20Bourse%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">08:50</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arrivo a Bordeaux-Mérignac</h4><p>Aeroporto BOD</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">09:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ritiro auto</h4><p>Aeroporto BOD</p></div></div>
+    <div class="stop car"><div class="time">10:05–10:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza dall’aeroporto</h4><p>Direzione Hôtel Majestic</p></div></div>
+    <div class="stop hotel"><div class="time">10:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Hôtel Majestic</h4><p>Scarico bagagli · 2 rue de Condé. Se l’accesso davanti all’hotel è scomodo, vai direttamente al Tourny.</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>INDIGO Tourny</h4><p>Parcheggio prenotato fino al 2 novembre alle 11:30</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">11:15–12:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Basilique Saint-Seurin</h4><p>Visita 40–45 min</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Seurin%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop food"><div class="time">12:15–13:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Pranzo libero</h4><p>Zona centro</p></div></div>
+    <div class="stop"><div class="time">14:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Cathédrale Saint-André</h4><p>Visita e punto di partenza del primo percorso</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">14:35–16:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Percorso 1 · Bordeaux elegante</h4><p>Rue Bouffard → rue des Remparts → Librairie Mollat → cours de l’Intendance → Triangle d’Or → Passage Sarget → rue Sainte-Catherine</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Librairie%20Mollat%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France">Percorso 1A</a><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Librairie%20Mollat%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Cours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France%7CTriangle%20d%27Or%2C%20Bordeaux%2C%20France%7CPassage%20Sarget%2C%20Bordeaux%2C%20France">Percorso 1B</a></div></div></div>
+    <div class="stop"><div class="time">16:00–18:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Percorso 2 · Bordeaux rinascimentale</h4><p>Place Fernand-Lafargue → Grosse Cloche → Saint-Éloi → rue Teulère → rue des Boucheries → rue Neuve → rue du Muguet → Place du Palais → Porte Cailhau → rue du Loup → Place Camille Jullian</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand-Lafargue%2C%20Bordeaux%2C%20France&destination=Rue%20des%20Boucheries%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CRue%20Teul%C3%A8re%2C%20Bordeaux%2C%20France">Percorso 2A</a><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Rue%20des%20Boucheries%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Neuve%2C%20Bordeaux%2C%20France%7CRue%20du%20Muguet%2C%20Bordeaux%2C%20France%7CPlace%20du%20Palais%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France%7CRue%20du%20Loup%2C%20Bordeaux%2C%20France">Percorso 2B</a></div></div></div>
+    <div class="stop"><div class="time">18:00–18:40</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Place de la Bourse</h4><p>Miroir d’Eau e passeggiata sui quais</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Place%20de%20la%20Bourse%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop hotel"><div class="time">19:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Rientro in hotel</h4><p>Breve pausa prima di cena</p></div></div>
     <div class="stop booked food"><div class="time">20:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arcada</h4><p>Cena <span class="bookedText">(PRENOTATA)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Arcada%20Restaurant%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-1.ics">+ Calendario</a></div></div></div>
   </div>
 </section>
 
 <section id="d2" class="page">
   <div class="detailHero"><img src="medoc.jpg" alt=""><button class="back" data-go="days">‹</button></div>
-  <div class="detailTitle"><h2>Sabato 31 ottobre<br>Médoc & Route des Châteaux</h2><p>Una visita strutturata e pomeriggio panoramico</p></div>
+  <div class="detailTitle"><h2>Sabato 31 ottobre<br>Médoc & Route des Châteaux</h2><p>Lynch-Bages, Bages, Pauillac e pomeriggio panoramico completo</p></div>
   <div class="timeline">
-    <div class="stop car"><div class="time">07:35</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza dal Tourny</h4><p>≈53–55 km · arrivo 08:40–08:45</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving">⌖ Apri Maps</a></div></div></div>
-    <div class="stop booked"><div class="time">09:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Château Lynch-Bages</h4><p>Premium Visit & Wine Tasting · English · 2 persone · 3 vini · €25 p.p. <span class="bookedText">(CONFERMATO)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-2.ics">+ Calendario</a></div></div></div>
-    <div class="stop"><div class="time">10:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Village de Bages</h4><p>Passeggiata</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Village%20de%20Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop"><div class="time">11:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Pauillac</h4><p>Lungofiume</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Pauillac%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop booked food"><div class="time">12:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Café Lavinal</h4><p>Pranzo <span class="bookedText">(PRENOTATO)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Lavinal%2C%20Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-3.ics">+ Calendario</a></div></div></div>
-    <div class="stop car"><div class="time">13:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Route des Châteaux · Nord</h4><p>Mouton → Lafite → Cos d’Estournel → Saint-Estèphe</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop car"><div class="time">15:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Saint-Julien → Cussac → Lamarque</h4><p>Tratto centrale e Gironda</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France%7CCussac-Fort-M%C3%A9doc%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop car"><div class="time">17:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Margaux → Labarde → Bordeaux</h4><p>Ultimo tratto panoramico</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France%7CLabarde%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop booked food"><div class="time">21:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Le Pressoir d’Argent</h4><p>Cena <span class="bookedText">(PRENOTATA)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Le%20Pressoir%20d%27Argent%20Gordon%20Ramsay%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-4.ics">+ Calendario</a></div></div></div>
+    <div class="stop food"><div class="time">07:00–07:20</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Colazione</h4><p>Partenza presto per il Médoc</p></div></div>
+    <div class="stop car"><div class="time">07:25</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Uscita dall’hotel</h4><p>Verso INDIGO Tourny</p></div></div>
+    <div class="stop car"><div class="time">07:35–07:40</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza dal Tourny</h4><p>≈53–55 km · 1h–1h10 · target arrivo 08:40–08:45</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked"><div class="time">09:00–10:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Château Lynch-Bages</h4><p>Premium Visit & Wine Tasting · English · 2 persone · 3 vini · €25 p.p. · pagamento all’arrivo <span class="bookedText">(CONFERMATO)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-2.ics">+ Calendario</a></div></div></div>
+    <div class="stop"><div class="time">10:30–11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Village de Bages</h4><p>Passeggiata dopo la visita</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Village%20de%20Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">11:05–11:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Bages → Pauillac</h4><p>Breve trasferimento</p></div></div>
+    <div class="stop"><div class="time">11:15–11:50</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Pauillac</h4><p>Passeggiata sul lungofiume</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Pauillac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked food"><div class="time">12:15–13:25</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Café Lavinal</h4><p>Pranzo · Place Desquet, Bages <span class="bookedText">(PRENOTATO)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Lavinal%2C%20Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-3.ics">+ Calendario</a></div></div></div>
+    <div class="stop car"><div class="time">13:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Route des Châteaux · Nord</h4><p>~13:40 Mouton Rothschild → ~14:00 Lafite Rothschild → ~14:10–14:20 Cos d’Estournel → 14:25–14:50 Saint-Estèphe</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">15:10–15:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ripartenza verso sud</h4><p>Direzione Saint-Julien-Beychevelle</p></div></div>
+    <div class="stop"><div class="time">15:45 circa</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Saint-Julien-Beychevelle</h4><p>Breve passaggio panoramico</p></div></div>
+    <div class="stop"><div class="time">16:15–16:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Gironda & carrelets</h4><p>Sosta fotografica; poi Cussac-Fort-Médoc e Lamarque di passaggio</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France%7CCussac-Fort-M%C3%A9doc%2C%20France">⌖ Apri tratto centrale</a></div></div></div>
+    <div class="stop"><div class="time">17:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Margaux</h4><p>Château Margaux esterno; Labarde di passaggio</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France%7CLabarde%2C%20France">⌖ Apri tratto sud</a></div></div></div>
+    <div class="stop car"><div class="time">17:20–17:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza per Bordeaux</h4><p>Target INDIGO Tourny 18:10–18:30</p></div></div>
+    <div class="stop car"><div class="time">18:10–18:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arrivo INDIGO Tourny</h4><p>Parcheggio auto</p></div></div>
+    <div class="stop hotel"><div class="time">18:30–20:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Hotel · riposo e cambio</h4><p>Più di due ore prima della cena</p></div></div>
+    <div class="stop booked food"><div class="time">21:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Le Pressoir d’Argent – Gordon Ramsay</h4><p>Cena <span class="bookedText">(PRENOTATA)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Le%20Pressoir%20d%27Argent%20Gordon%20Ramsay%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-4.ics">+ Calendario</a></div></div></div>
   </div>
 </section>
 
 <section id="d3" class="page">
   <div class="detailHero"><img src="cellar.jpg" alt=""><button class="back" data-go="days">‹</button></div>
-  <div class="detailTitle"><h2>Domenica 1 novembre<br>Cité du Vin & Saint-Michel</h2><p>Giornata urbana più rilassata</p></div>
+  <div class="detailTitle"><h2>Domenica 1 novembre<br>Cité du Vin & Saint-Michel</h2><p>Mercato, museo del vino, quartieri e cena da Lume</p></div>
   <div class="timeline">
-    <div class="stop food"><div class="time">09:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Marché des Capucins</h4><p>Mercato · fino alle 10:30</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=March%C3%A9%20des%20Capucins%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop"><div class="time">11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Cité du Vin</h4><p>11:00–14:00 · <span class="bookedText">DA PRENOTARE</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-5.ics">+ Calendario</a></div></div></div>
+    <div class="stop food"><div class="time">08:30–09:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Colazione</h4><p>Mattina tranquilla</p></div></div>
+    <div class="stop"><div class="time">09:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza dall’hotel</h4><p>Direzione Marché des Capucins</p></div></div>
+    <div class="stop food"><div class="time">09:45–10:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Marché des Capucins</h4><p>Visita al mercato</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=March%C3%A9%20des%20Capucins%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">10:30–11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Trasferimento verso Cité du Vin</h4><p>A piedi + tram</p></div></div>
+    <div class="stop"><div class="time">11:00–14:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Cité du Vin</h4><p>Tre ore previste · <span class="bookedText">DA PRENOTARE</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-5.ics">+ Calendario</a></div></div></div>
+    <div class="stop food"><div class="time">14:00–15:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Pranzo leggero</h4><p>Zona Bacalan / Chartrons</p></div></div>
     <div class="stop"><div class="time">15:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Basilique Saint-Michel</h4><p>Tappa flessibile per Ognissanti</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Michel%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">16:15–17:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Saint-Michel → centro</h4><p>Porte de Bourgogne → quais → Saint-Pierre → rue Sainte-Catherine → Hôtel Majestic</p></div></div>
+    <div class="stop hotel"><div class="time">18:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Rientro in hotel</h4><p>Pausa prima di cena</p></div></div>
     <div class="stop booked food"><div class="time">19:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Lume</h4><p>3 rue des Faussets · <span class="bookedText">PRENOTATO</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Lume%2C%203%20Rue%20des%20Faussets%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-6.ics">+ Calendario</a></div></div></div>
   </div>
 </section>
 
 <section id="d4" class="page">
   <div class="detailHero"><img src="bordeaux.jpg" alt=""><button class="back" data-go="days">‹</button></div>
-  <div class="detailTitle"><h2>Lunedì 2 novembre<br>Bordeaux → Aeroporto</h2><p>Ultimo giro e rientro</p></div>
+  <div class="detailTitle"><h2>Lunedì 2 novembre<br>Bordeaux → Aeroporto</h2><p>Ultima passeggiata, check-out e rientro</p></div>
   <div class="timeline">
-    <div class="stop"><div class="time">09:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ultimo giro</h4><p>Grand Théâtre → Triangle d’Or → Place Gambetta → shopping</p></div></div>
-    <div class="stop hotel"><div class="time">10:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Check-out</h4><p>Hôtel Majestic</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop car"><div class="time">10:50</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Recupero auto al Tourny</h4><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
-    <div class="stop car"><div class="time">11:10</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza aeroporto</h4><p>Eventuale rifornimento 11:45–12:00</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving">⌖ Apri percorso</a></div></div></div>
+    <div class="stop food"><div class="time">08:00–08:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Colazione</h4><p>Ultima mattina a Bordeaux</p></div></div>
+    <div class="stop"><div class="time">09:00–10:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ultimo giro</h4><p>Grand Théâtre → Triangle d’Or → Place Gambetta → shopping / eventuale recupero del venerdì</p></div></div>
+    <div class="stop hotel"><div class="time">10:15–10:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Check-out e bagagli</h4><p>Hôtel Majestic</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">10:50–11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Recupero auto al Tourny</h4><p>Il parcheggio termina alle 11:30</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">11:10</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza per aeroporto</h4><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving">⌖ Apri percorso</a></div></div></div>
+    <div class="stop car"><div class="time">11:45–12:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Eventuale rifornimento</h4><p>Solo se necessario</p></div></div>
+    <div class="stop"><div class="time">12:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arrivo in aeroporto</h4><p>Margine comodo prima della riconsegna auto</p></div></div>
     <div class="stop booked"><div class="time">13:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Riconsegna auto</h4><p><span class="bookedText">CONFERMATA</span></p><div class="actions"><a class="smallBtn" href="event-7.ics">+ Calendario</a></div></div></div>
     <div class="stop"><div class="time">14:55</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Volo di ritorno</h4><p>Fine viaggio</p></div></div>
   </div>
 </section>
 
 
+
 <section id="bookings" class="page">
-  <div class="head"><h1>Prenotazioni</h1><p>Tocca Maps o Calendario: ogni scheda ora ha azioni funzionanti</p></div>
+  <div class="head"><h1>Prenotazioni</h1><p>Wallet completo: hotel, auto, parcheggio, visite e ristoranti</p></div>
   <div class="list">
+    <div class="listCard"><img src="bordeaux.jpg" alt=""><div><h3>Hôtel Majestic</h3><p>30 OTT → 2 NOV · 2 rue de Condé</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Maps</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="bordeaux.jpg" alt=""><div><h3>Auto a noleggio</h3><p>Ritiro 30 OTT 09:30 · riconsegna 2 NOV 13:00 · BOD</p><div class="status">✓ Confermata</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-7.ics">Riconsegna</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="bordeaux.jpg" alt=""><div><h3>INDIGO Tourny</h3><p>30 OTT 11:00 → 2 NOV 11:30 · €78,46</p><div class="status">✓ Definitivo</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Maps</a></div></div><div>›</div></div>
     <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Arcada</h3><p>30 OTT · 20:00 · cena</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Arcada%20Restaurant%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-1.ics">+ Calendario</a></div></div><div>›</div></div>
-    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Château Lynch-Bages</h3><p>31 OTT · 09:00 · Premium Visit</p><div class="status">✓ Confermato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-2.ics">+ Calendario</a><a class="bookBtn site" href="https://www.lynchbages.com/en/visiter/">Sito</a></div></div><div>›</div></div>
+    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Château Lynch-Bages</h3><p>31 OTT · 09:00 · Premium Visit · 2 persone · €25 p.p.</p><div class="status">✓ Confermato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-2.ics">+ Calendario</a><a class="bookBtn site" href="https://www.lynchbages.com/en/visiter/">Sito</a></div></div><div>›</div></div>
     <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Café Lavinal</h3><p>31 OTT · 12:15 · 2 persone</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Lavinal%2C%20Bages%2C%20Pauillac%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-3.ics">+ Calendario</a></div></div><div>›</div></div>
     <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Le Pressoir d’Argent</h3><p>31 OTT · 21:00 · cena</p><div class="status">✓ Prenotato</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Le%20Pressoir%20d%27Argent%20Gordon%20Ramsay%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-4.ics">+ Calendario</a><a class="bookBtn site" href="https://bordeaux.intercontinental.com/en/le-pressoir-dargent-gordon-ramsay/">Sito</a></div></div><div>›</div></div>
     <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Cité du Vin</h3><p>1 NOV · 11:00–14:00</p><div style="font-size:9px;color:#b36c0d;font-weight:800">● Da prenotare</div><div class="bookBtns"><a class="bookBtn" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France">⌖ Maps</a><a class="bookBtn cal" href="event-5.ics">+ Calendario</a><a class="bookBtn site" href="https://www.laciteduvin.com/">Sito</a></div></div><div>›</div></div>
@@ -204,7 +229,7 @@ body{min-height:100vh} a,button{font:inherit}
         <li><b>Percorso 1:</b> Cathédrale Saint-André → rue Bouffard → rue des Remparts → Librairie Mollat → cours de l’Intendance → rue Sainte-Catherine</li>
         <li><b>Percorso 2:</b> Place Fernand-Lafargue → Grosse Cloche → Saint-Éloi → Porte Cailhau → Place Camille Jullian</li>
       </ol>
-      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France%7CLibrairie%20Mollat%2C%20Bordeaux%2C%20France%7CCours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France">Apri percorso 1</a><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">Apri percorso 2</a></div>
+      <div class="routeActions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Librairie%20Mollat%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France">Apri percorso 1</a><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">Apri percorso 2</a></div>
     </div>
 
     <div class="routeCard">
@@ -246,11 +271,44 @@ body{min-height:100vh} a,button{font:inherit}
   <div class="noteBox"><b>Importante:</b> ho eliminato la mappa stilizzata che poteva creare confusione. Ora ogni tratta è descritta in testo e ha il proprio pulsante Google Maps.</div>
 </section>
 
+
+<section id="altro" class="page">
+  <div class="head"><h1>Altro</h1><p>Wine Passport, note e cose da controllare</p></div>
+  <div class="list">
+    <div class="routeCard">
+      <h3>🍷 Wine Passport</h3>
+      <div class="routeMeta">Spunta le tappe e salva le note sul dispositivo</div>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="lynch"> Lynch-Bages</label>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="mouton"> Mouton Rothschild</label>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="lafite"> Lafite Rothschild</label>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="cos"> Cos d’Estournel</label>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="margaux"> Margaux</label>
+      <textarea id="wineNotes" style="width:100%;min-height:110px;border:1px solid #dde5ec;border-radius:12px;padding:10px;font:inherit;margin-top:8px" placeholder="Vini, annate, prezzi, bottiglie da acquistare…"></textarea>
+    </div>
+
+    <div class="routeCard">
+      <h3>✅ Da chiudere</h3>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="cite"> Prenotare Cité du Vin · 1 NOV ore 11:00</label>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="fuel"> Verificare politica carburante auto</label>
+      <label style="display:block;font-size:11px;margin:7px 0"><input type="checkbox" data-save="offline"> Aprire l’app con Wi‑Fi prima della partenza</label>
+    </div>
+
+    <div class="routeCard">
+      <h3>☔ Piano B</h3>
+      <ul class="routeSteps">
+        <li><b>Venerdì:</b> mantieni Saint-Seurin e Saint-André; recupera le passeggiate lunedì se necessario.</li>
+        <li><b>Sabato:</b> Lynch-Bages e Café Lavinal invariati; riduci le soste esterne nel Médoc.</li>
+        <li><b>Domenica:</b> Cité du Vin resta la priorità; accorcia Saint-Michel e il centro se piove.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <nav class="bottom">
   <button class="nav active" data-page="home"><b>⌂</b>Home</button>
   <button class="nav" data-page="days"><b>▣</b>Giorni</button>
   <button class="nav" data-page="map"><b>⌖</b>Mappa</button>
-  <button class="nav" data-page="bookings"><b>☷</b>Altro</button>
+  <button class="nav" data-page="altro"><b>☷</b>Altro</button>
 </nav>
 </div>
 
@@ -265,6 +323,28 @@ function go(id){
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
 document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.go)}));
 document.querySelectorAll('[data-detail]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.detail)}));
+
+document.querySelectorAll('[data-save]').forEach(cb=>{
+  const k='bdx13_'+cb.dataset.save;
+  cb.checked=localStorage.getItem(k)==='1';
+  cb.addEventListener('change',()=>localStorage.setItem(k,cb.checked?'1':'0'));
+});
+const wn=document.getElementById('wineNotes');
+if(wn){
+  wn.value=localStorage.getItem('bdx13_notes')||'';
+  wn.addEventListener('input',()=>localStorage.setItem('bdx13_notes',wn.value));
+}
+(function(){
+  const p=document.getElementById('tripProgress');
+  if(!p) return;
+  const now=new Date(), start=new Date('2026-10-30T08:50:00+01:00'), end=new Date('2026-11-02T14:55:00+01:00');
+  let pct=0;
+  if(now<=start) pct=0;
+  else if(now>=end) pct=100;
+  else pct=Math.round(((now-start)/(end-start))*100);
+  p.style.width=pct+'%';
+})();
+
 if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body>

@@ -1,4 +1,4 @@
-const CACHE='bordeaux-baviera-style-v1-1';
+const CACHE='bordeaux-baviera-style-v1-3-final';
 const ASSETS=["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./bordeaux.jpg", "./medoc.jpg", "./dining.jpg", "./cellar.jpg", "./event-1.ics", "./event-2.ics", "./event-3.ics", "./event-4.ics", "./event-5.ics", "./event-6.ics", "./event-7.ics"];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)))}); 
 self.addEventListener('activate',e=>e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))])));
