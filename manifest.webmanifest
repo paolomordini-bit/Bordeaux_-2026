@@ -3,8 +3,8 @@
   "short_name": "Bordeaux 2026",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#fbfaf7",
-  "theme_color": "#5c0f2b",
+  "background_color": "#fffaf4",
+  "theme_color": "#0c4e7b",
   "icons": [
     {
       "src": "icon-192.png",

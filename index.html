@@ -2,256 +2,211 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#5c0f2b">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c4e7b">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Bordeaux 2026">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Bordeaux & Médoc 2026</title>
 <style>
-:root{
-  --wine:#8f0f34; --wine2:#5c0f2b; --gold:#d6a84e; --ink:#171315; --muted:#71686c;
-  --paper:#fffdf9; --bg:#f5f1eb; --line:#e7ddd5; --cream:#f7efe7; --green:#557043;
-  --shadow:0 12px 28px rgba(44,24,31,.12);
-}
+:root{--blue:#0a67c9;--navy:#083f69;--sky:#eaf5ff;--cream:#fffdf8;--paper:#fff;--ink:#172333;--muted:#687484;--line:#dde5ec;--red:#e63a2f;--green:#2db76d;--orange:#ff9f2d;--wine:#8d1739;--shadow:0 7px 20px rgba(24,50,76,.10)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif}
-body{min-height:100vh}
-button,a{font:inherit}
-.app{max-width:430px;margin:0 auto;min-height:100vh;background:#fbfaf7;padding-bottom:86px;box-shadow:0 0 30px rgba(0,0,0,.05)}
+html,body{margin:0;background:#f4f0e8;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif}
+body{min-height:100vh} a,button{font:inherit}
+.shell{max-width:430px;margin:auto;background:#fffaf4;min-height:100vh;padding-bottom:82px;box-shadow:0 0 32px rgba(0,0,0,.08)}
 .page{display:none}.page.active{display:block}
-.topbar{position:sticky;top:0;z-index:50;height:58px;display:flex;align-items:center;justify-content:center;padding:0 14px;background:rgba(251,250,247,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.04)}
-.topbar .title{font-family:Georgia,"Times New Roman",serif;font-size:17px}
-.topbar .side{position:absolute;top:0;height:58px;display:flex;align-items:center;color:#3d3136;font-size:20px}
-.topbar .left{left:15px;cursor:pointer}.topbar .right{right:15px;cursor:pointer}
-.hero{height:440px;position:relative;overflow:hidden;background:#26161d}
+.hero{position:relative;height:480px;overflow:hidden;background:#123d5e;color:#fff}
 .hero img{width:100%;height:100%;object-fit:cover;display:block}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,7,10,.05) 10%,rgba(13,7,10,.15) 42%,rgba(13,7,10,.82) 100%)}
-.heroText{position:absolute;z-index:2;left:22px;right:22px;bottom:28px;color:#fff;text-align:center}
-.heroText h1{font-family:Georgia,"Times New Roman",serif;font-size:39px;line-height:1.02;margin:0 0 13px;font-weight:500;letter-spacing:-.02em}
-.heroText .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
-.cta{display:inline-flex;margin-top:22px;padding:13px 24px;border-radius:999px;background:linear-gradient(180deg,#e3b95d,#c9942f);color:#fff;text-decoration:none;font-weight:700;font-size:14px;box-shadow:0 9px 20px rgba(0,0,0,.22)}
-.quickGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 10px 4px}
-.quickCard{height:115px;border-radius:16px;overflow:hidden;position:relative;background:#24161c;box-shadow:var(--shadow);text-decoration:none;color:white}
-.quickCard img{width:100%;height:100%;object-fit:cover}
-.quickCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 20%,rgba(14,8,11,.74) 100%)}
-.quickTxt{position:absolute;z-index:2;left:12px;right:10px;bottom:10px}
-.quickTxt b{font-family:Georgia,"Times New Roman",serif;font-size:18px;font-weight:500;display:block}
-.quickTxt span{font-size:10px;opacity:.92}
-.sectionTitle{font-family:Georgia,"Times New Roman",serif;font-size:28px;font-weight:500;margin:22px 16px 10px}
-.subtitle{font-size:12px;color:var(--muted);padding:0 16px 12px}
-.days{display:flex;gap:8px;overflow:auto;padding:10px 12px 14px;scrollbar-width:none}
-.days::-webkit-scrollbar{display:none}
-.dayBtn{flex:0 0 64px;border:1px solid var(--line);border-radius:12px;background:white;padding:10px 8px;text-align:center;color:var(--ink)}
-.dayBtn b{display:block;font-size:11px}.dayBtn span{display:block;font-size:13px;margin-top:3px}
-.dayBtn.active{background:var(--wine);color:white;border-color:var(--wine)}
-.dayPanel{display:none}.dayPanel.active{display:block}
-.dayHero{height:205px;margin:0 12px;border-radius:18px;overflow:hidden;position:relative;background:#2a1720}
-.dayHero img{width:100%;height:100%;object-fit:cover}
-.dayHero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 24%,rgba(0,0,0,.72) 100%)}
-.dayHeroText{position:absolute;z-index:2;left:16px;right:16px;bottom:14px;color:#fff}
-.dayHeroText small{font-size:10px;opacity:.88}.dayHeroText h2{font-family:Georgia,"Times New Roman",serif;font-size:28px;font-weight:500;margin:2px 0 0}
-.timeline{background:#fff;margin:10px 12px 16px;border-radius:18px;padding:12px 14px;box-shadow:var(--shadow)}
-.item{display:grid;grid-template-columns:48px 18px 1fr;gap:6px;min-height:64px}
-.t{font-size:11px;font-weight:800;padding-top:3px}
-.dotcol{position:relative}
-.dotcol:before{content:"";position:absolute;top:9px;bottom:-1px;left:8px;width:1px;background:#dcc8cf}
-.item:last-child .dotcol:before{display:none}
-.dot{position:absolute;top:7px;left:4px;width:9px;height:9px;border-radius:50%;background:var(--wine);border:2px solid #fff;box-shadow:0 0 0 1px var(--wine)}
-.info b{font-size:13px;display:block}.info span{font-size:10px;color:var(--muted);line-height:1.4}.info a{font-size:10px;color:var(--wine);font-weight:700;text-decoration:none}.linkrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}.maplink{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;background:#f7edf1;color:var(--wine)!important;font-size:9px!important;text-decoration:none!important;font-weight:800!important}
-.featureCard{margin:10px 12px;border-radius:18px;overflow:hidden;position:relative;height:178px;background:#2b1720;box-shadow:var(--shadow)}
-.featureCard img{width:100%;height:100%;object-fit:cover}
-.featureCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,.76) 100%)}
-.featureText{position:absolute;z-index:2;left:15px;right:15px;bottom:14px;color:#fff}
-.featureText h3{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:500;margin:0}.featureText p{font-size:11px;margin:4px 0 0}
-.placeCard{margin:10px 12px;border-radius:17px;overflow:hidden;position:relative;height:145px;background:#2b1720;box-shadow:var(--shadow)}
-.placeCard img{width:100%;height:100%;object-fit:cover}
-.placeCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.82) 100%)}
-.placeText{position:absolute;z-index:2;left:14px;right:14px;bottom:10px;color:white}
-.placeText h3{font-family:Georgia,"Times New Roman",serif;font-size:22px;font-weight:500;margin:0}.placeText p{font-size:10px;margin:3px 0 0}
-.wineHero{margin:0 12px;border-radius:20px;overflow:hidden;position:relative;height:270px;background:#24161c}
-.wineHero img{width:100%;height:100%;object-fit:cover}
-.wineHero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.78) 100%)}
-.wineHeroText{position:absolute;z-index:2;left:16px;right:16px;bottom:14px;color:white}
-.wineHeroText h2{font-family:Georgia,"Times New Roman",serif;font-size:26px;font-weight:500;margin:0}.wineHeroText p{font-size:11px;margin:4px 0 0}
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);margin:10px 12px 0;background:#f4f0eb;border-radius:12px;padding:4px}
-.tab{border:0;background:transparent;padding:9px 4px;border-radius:9px;font-size:11px}.tab.active{background:#fff;color:var(--wine);font-weight:700;box-shadow:0 1px 6px rgba(0,0,0,.06)}
-.infoCard{background:#fff;margin:10px 12px;border-radius:18px;padding:15px;box-shadow:var(--shadow)}
-.row{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid #eee7e2}.row:last-child{border-bottom:0}.row .icon{font-size:18px}.row b{font-size:12px}.row span{display:block;color:var(--muted);font-size:10px;margin-top:2px}
-.mapCard{margin:0 12px 10px;border-radius:18px;background:#eaf0e6;position:relative;height:310px;overflow:hidden;border:1px solid #dde5d7}
-.mapRoad{position:absolute;left:52%;top:16px;width:6px;height:275px;background:#4b87c2;border-radius:8px;transform:rotate(8deg);box-shadow:0 0 0 2px rgba(255,255,255,.8)}
-.river{position:absolute;right:-26px;top:-10px;width:110px;height:360px;background:#b9d7e8;transform:rotate(7deg)}
-.pin{position:absolute;left:calc(52% - 7px);width:15px;height:15px;background:#e63d32;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 5px rgba(0,0,0,.22)}
-.pin:after{content:"";position:absolute;width:5px;height:5px;background:white;border-radius:50%;left:5px;top:5px}
-.lab{position:absolute;left:58%;font-size:10px;background:white;padding:6px 8px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.12);white-space:nowrap}
-.poiList{margin:0 12px 18px;background:white;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
-.poi{display:grid;grid-template-columns:64px 1fr 18px;gap:10px;padding:9px;border-bottom:1px solid #eee7e2;align-items:center}.poi:last-child{border-bottom:0}
-.poi img{width:64px;height:46px;object-fit:cover;border-radius:9px}.poi b{font-size:11px}.poi span{display:block;font-size:9px;color:var(--muted);margin-top:2px}
-.doc{background:#fff;margin:10px 12px;border-radius:16px;padding:13px 14px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:12px;align-items:center}
-.doc b{font-size:12px}.doc span{display:block;font-size:10px;color:var(--muted);margin-top:3px}.doc a{color:var(--wine);text-decoration:none;font-size:11px;font-weight:800}
-.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);height:72px;padding:6px 5px calc(env(safe-area-inset-bottom) + 6px);display:grid;grid-template-columns:repeat(5,1fr);background:rgba(251,250,247,.96);backdrop-filter:blur(18px);border-top:1px solid #e9e0da;z-index:100}
-.nav{border:0;background:transparent;color:#6f666a;font-size:9px;padding:4px 2px}.nav i{display:block;font-style:normal;font-size:19px;margin-bottom:2px}.nav.active{color:var(--wine);font-weight:700}
-.note{margin:12px;color:#7b6e73;font-size:9px;line-height:1.45}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,31,52,.12) 0%,rgba(5,31,52,.18) 38%,rgba(5,31,52,.92) 100%)}
+.heroContent{position:absolute;z-index:2;left:22px;right:22px;top:30px}
+.tripTitle{font-family:Georgia,"Times New Roman",serif;font-size:31px;line-height:1.05;margin:0 0 9px;font-weight:700}
+.tripMeta{font-size:12px;line-height:1.5;opacity:.95}
+.icons{display:flex;justify-content:space-between;margin-top:24px;text-align:center}
+.icons div{font-size:10px;width:23%;opacity:.95}.icons b{display:block;font-size:23px;margin-bottom:5px}
+.todayCard{position:absolute;z-index:3;left:20px;right:20px;bottom:18px;background:rgba(255,251,244,.96);color:var(--ink);border-radius:20px;padding:14px;box-shadow:0 14px 34px rgba(0,0,0,.24)}
+.todayTop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.todayDate{font-weight:900;color:var(--red);font-size:12px}.todayRoute{font-family:Georgia,serif;font-size:18px;font-weight:700;margin-top:4px}
+.progress{height:7px;background:#e5e4df;border-radius:99px;overflow:hidden;margin-top:11px}.progress i{display:block;height:100%;width:18%;background:var(--green);border-radius:99px}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 14px}
+.quickBtn{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;text-decoration:none;color:var(--ink);font-size:12px;font-weight:800;box-shadow:var(--shadow)}.quickBtn b{font-size:19px;margin-right:7px}
+.head{position:sticky;top:0;z-index:50;padding:calc(env(safe-area-inset-top) + 13px) 16px 11px;background:rgba(255,252,247,.93);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.05)}
+.head h1{font-family:Georgia,serif;font-size:25px;line-height:1;margin:0}.head p{font-size:11px;color:var(--muted);margin:5px 0 0}
+.dayList{padding:12px}
+.dayCard{position:relative;display:grid;grid-template-columns:58px 1fr 126px;min-height:116px;background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden;margin-bottom:9px;box-shadow:var(--shadow);text-decoration:none;color:var(--ink)}
+.cal{padding:12px 8px;text-align:center}.cal small{color:var(--red);font-weight:900;font-size:10px}.cal b{display:block;font-size:24px;margin-top:3px}
+.dayText{padding:13px 6px}.dayText .dow{color:var(--red);font-weight:900;font-size:10px}.dayText h3{font-family:Georgia,serif;margin:4px 0;font-size:15px;line-height:1.2}.dayText p{font-size:10px;color:var(--muted);margin:0;line-height:1.35}
+.dayCard img{width:100%;height:100%;object-fit:cover}
+.detailHero{height:214px;position:relative;overflow:hidden}.detailHero img{width:100%;height:100%;object-fit:cover}.back{position:absolute;z-index:3;left:13px;top:13px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(36,52,64,.68);color:#fff;font-size:22px}
+.detailTitle{background:#fffaf4;padding:13px 15px 8px}.detailTitle h2{font-family:Georgia,serif;font-size:23px;margin:0;line-height:1.1}.detailTitle p{font-size:11px;color:var(--muted);margin:4px 0 0}
+.planToggle{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:5px 14px 10px}.toggle{border:0;border-radius:13px;background:#f0f0ed;padding:10px;font-size:11px;font-weight:800}.toggle.active{background:var(--blue);color:#fff}
+.timeline{padding:4px 14px 16px}.stop{display:grid;grid-template-columns:47px 23px 1fr;min-height:73px}.time{font-weight:900;font-size:11px;padding-top:3px}.rail{position:relative}.rail:before{content:"";position:absolute;left:10px;top:13px;bottom:-2px;width:2px;background:#e2ddd5}.stop:last-child .rail:before{display:none}.dot{position:absolute;left:5px;top:7px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--orange)}.stop.car .dot{border-color:#f26b36}.stop.food .dot{border-color:#f39b15}.stop.hotel .dot{border-color:#1b72d2}.stop.boat .dot{border-color:#1b72d2}.stop.booked .dot{border-color:var(--green)}
+.stopInfo{padding-bottom:14px}.stopInfo h4{font-size:12px;margin:0 0 3px}.stopInfo p{font-size:10px;color:var(--muted);margin:0 0 6px;line-height:1.38}
+.actions{display:flex;gap:6px;flex-wrap:wrap}.mapBtn,.smallBtn{display:inline-flex;align-items:center;text-decoration:none;border:0;border-radius:999px;padding:7px 11px;font-size:9px;font-weight:800}.mapBtn{background:#e7f3ff;color:#1069c7}.smallBtn{background:#eef0f1;color:#4e5b65}.bookedText{color:#ed3830;font-size:9px;font-weight:900}
+.list{padding:12px 14px 18px}.listCard{display:grid;grid-template-columns:68px 1fr 18px;gap:10px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:9px;margin-bottom:8px;align-items:center;box-shadow:var(--shadow)}
+.listCard img{width:68px;height:55px;object-fit:cover;border-radius:10px}.listCard h3{font-size:12px;margin:0}.listCard p{font-size:9px;color:var(--muted);margin:3px 0 0;line-height:1.3}.listCard .status{font-size:9px;color:var(--green);font-weight:800;margin-top:3px}
+.hotelCard{display:grid;grid-template-columns:1fr 118px;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px;margin-bottom:9px;box-shadow:var(--shadow)}.hotelCard img{width:118px;height:86px;object-fit:cover;border-radius:10px}.hotelCard .date{font-size:10px;font-weight:900;color:var(--red)}.hotelCard h3{font-family:Georgia,serif;font-size:15px;margin:3px 0}.hotelCard p{font-size:9px;color:var(--muted);margin:2px 0}
+.mapPanel{margin:12px 14px;border-radius:17px;background:linear-gradient(180deg,#dff1e0,#d6e9cf);height:330px;position:relative;overflow:hidden;border:1px solid #d3ded1}.river{position:absolute;right:-15px;top:-20px;width:88px;height:390px;background:#a8d4ea;transform:rotate(7deg)}.road{position:absolute;left:47%;top:16px;width:7px;height:300px;background:#3f8be0;transform:rotate(5deg);border-radius:9px}.pin{position:absolute;width:15px;height:15px;border-radius:50% 50% 50% 0;background:#ec3b32;transform:rotate(-45deg);box-shadow:0 2px 4px rgba(0,0,0,.18)}.pin:after{content:"";position:absolute;width:5px;height:5px;background:white;border-radius:50%;left:5px;top:5px}.mlabel{position:absolute;background:#fff;padding:4px 7px;border-radius:8px;font-size:9px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.routeBtns{padding:0 14px 18px}.routeBtn{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 12px;margin-bottom:7px;font-size:11px;font-weight:800}.routeBtn span{color:var(--blue)}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);height:70px;padding:6px 8px calc(env(safe-area-inset-bottom) + 6px);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,252,247,.96);backdrop-filter:blur(18px);border-top:1px solid #e4ded7;z-index:90}.nav{border:0;background:transparent;color:#66717c;font-size:9px}.nav b{display:block;font-size:19px;margin-bottom:2px}.nav.active{color:var(--blue);font-weight:900}
+.noteBox{background:#fff4e6;border:1px solid #edd8b9;border-radius:14px;padding:11px;margin:10px 14px;font-size:10px;line-height:1.45;color:#6b4b22}
 </style>
 </head>
 <body>
-<div class="app">
+<div class="shell">
 
 <section id="home" class="page active">
-  <div class="topbar"><span class="side left">☰</span><div class="title">Bordeaux & Médoc 2026</div><span class="side right">⋯</span></div>
   <div class="hero">
-    <img src="bordeaux.jpg" alt="Bordeaux">
-    <div class="heroText">
-      <h1>Bordeaux & Médoc<br>2026</h1>
-      <div class="kicker">VINI · GASTRONOMIA · CULTURA</div>
-      <a class="cta" href="#" data-go="days">Inizia il viaggio →</a>
+    <img src="bordeaux.jpg" alt="">
+    <div class="heroContent">
+      <h1 class="tripTitle">🇫🇷 Bordeaux &<br>Médoc 2026 🍷</h1>
+      <div class="tripMeta">30 ottobre – 2 novembre<br>4 giorni · 3 notti · città, vino e gastronomia</div>
+      <div class="icons">
+        <div><b>🏛️</b>Bordeaux</div><div><b>🍇</b>Médoc</div><div><b>🍽️</b>Gastronomia</div><div><b>🍷</b>Vino</div>
+      </div>
+    </div>
+    <div class="todayCard">
+      <div class="todayTop"><div><div class="todayDate">📅 VIAGGIO</div><div class="todayRoute">Bordeaux → Médoc → Bordeaux</div></div><img src="dining.jpg" style="width:70px;height:54px;object-fit:cover;border-radius:50%" alt=""></div>
+      <div style="font-size:10px;color:#6c7782;margin-top:6px">Master operativo completo · prenotazioni, orari e percorsi</div>
+      <div class="progress"><i></i></div>
     </div>
   </div>
-  <div class="quickGrid">
-    <a class="quickCard" href="#" data-go="days"><img src="dining.jpg" alt=""><div class="quickTxt"><b>Programma</b><span>Giorno per giorno</span></div></a>
-    <a class="quickCard" href="#" data-go="wine"><img src="cellar.jpg" alt=""><div class="quickTxt"><b>Wine Passport</b><span>Degustazioni</span></div></a>
-    <a class="quickCard" href="#" data-go="places"><img src="bordeaux.jpg" alt=""><div class="quickTxt"><b>Luoghi</b><span>Mappa e indirizzi</span></div></a>
-    <a class="quickCard" href="#" data-go="docs"><img src="dining.jpg" alt=""><div class="quickTxt"><b>Documenti</b><span>Prenotazioni e note</span></div></a>
+  <div class="quick">
+    <a class="quickBtn" href="#" data-go="days"><b>🗓️</b>Programma</a>
+    <a class="quickBtn" href="#" data-go="bookings"><b>🎟️</b>Prenotazioni</a>
+    <a class="quickBtn" href="#" data-go="hotels"><b>🛏️</b>Hotel</a>
+    <a class="quickBtn" href="#" data-go="places"><b>🍷</b>Vino & Luoghi</a>
   </div>
 </section>
 
 <section id="days" class="page">
-  <div class="topbar"><span class="side left" data-go="home">‹</span><div class="title">Bordeaux & Médoc 2026</div></div>
-  <div class="days">
-    <button class="dayBtn active" data-day="d1"><b>Ven</b><span>30</span></button>
-    <button class="dayBtn" data-day="d2"><b>Sab</b><span>31</span></button>
-    <button class="dayBtn" data-day="d3"><b>Dom</b><span>1</span></button>
-    <button class="dayBtn" data-day="d4"><b>Lun</b><span>2</span></button>
+  <div class="head"><h1>I 4 giorni del viaggio</h1><p>Tocca una giornata per vedere il programma completo</p></div>
+  <div class="dayList">
+    <a class="dayCard" href="#" data-detail="d1"><div class="cal"><small>OTT</small><b>30</b></div><div class="dayText"><div class="dow">VEN</div><h3>Arrivo → Bordeaux centro</h3><p>Hotel, basiliche, due passeggiate e Arcada</p></div><img src="bordeaux.jpg" alt=""></a>
+    <a class="dayCard" href="#" data-detail="d2"><div class="cal"><small>OTT</small><b>31</b></div><div class="dayText"><div class="dow">SAB</div><h3>Bordeaux → Médoc → Bordeaux</h3><p>Lynch-Bages, Café Lavinal e Route des Châteaux</p></div><img src="medoc.jpg" alt=""></a>
+    <a class="dayCard" href="#" data-detail="d3"><div class="cal"><small>NOV</small><b>1</b></div><div class="dayText"><div class="dow">DOM</div><h3>Capucins → Cité du Vin → Lume</h3><p>Mercato, vino, Saint-Michel e cena</p></div><img src="cellar.jpg" alt=""></a>
+    <a class="dayCard" href="#" data-detail="d4"><div class="cal"><small>NOV</small><b>2</b></div><div class="dayText"><div class="dow">LUN</div><h3>Bordeaux → Aeroporto</h3><p>Ultima passeggiata, auto e volo 14:55</p></div><img src="bordeaux.jpg" alt=""></a>
   </div>
+</section>
 
-  <div id="d1" class="dayPanel active">
-    <div class="dayHero"><img src="bordeaux.jpg" alt=""><div class="dayHeroText"><small>Venerdì 30 ottobre</small><h2>Arrivo a Bordeaux</h2></div></div>
-    <div class="timeline">
-      <div class="item"><div class="t">08:50</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Arrivo a Bordeaux</b><span>Aeroporto BOD</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">09:30</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Ritiro auto</b><span>Aeroporto Bordeaux-Mérignac</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">10:45</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Hôtel Majestic</b><span>Scarico bagagli · 2 rue de Condé</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">11:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>INDIGO Tourny</b><span>Parcheggio prenotato</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">11:15</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Basilique Saint-Seurin</b><span>Visita</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Seurin%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">14:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Cathédrale Saint-André</b><span>Poi due passeggiate nel centro storico</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a><a class="maplink" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France|Rue%20des%20Remparts%2C%20Bordeaux%2C%20France|Librairie%20Mollat%2C%20Bordeaux%2C%20France" data-external-map="1">Percorso 1</a><a class="maplink" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France|%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France|Porte%20Cailhau%2C%20Bordeaux%2C%20France" data-external-map="1">Percorso 2</a></div></div></div>
-      <div class="item"><div class="t">18:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Place de la Bourse</b><span>Miroir d’Eau e quais</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Place%20de%20la%20Bourse%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">20:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Arcada</b><span>Cena prenotata</span><div class="linkrow"><a class="maplink" href="event-1.ics">+ Calendario</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Arcada%20Restaurant%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-    </div>
+<section id="d1" class="page">
+  <div class="detailHero"><img src="bordeaux.jpg" alt=""><button class="back" data-go="days">‹</button></div>
+  <div class="detailTitle"><h2>Venerdì 30 ottobre<br>Arrivo a Bordeaux</h2><p>Primo giorno: centro storico e cena da Arcada</p></div>
+  <div class="timeline">
+    <div class="stop car"><div class="time">08:50</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arrivo a Bordeaux</h4><p>Aeroporto BOD</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">09:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ritiro auto</h4><p>Aeroporto Bordeaux-Mérignac</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop hotel"><div class="time">10:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Hôtel Majestic</h4><p>Scarico bagagli · 2 rue de Condé</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>INDIGO Tourny</h4><p>Parcheggio prenotato fino al 2 novembre 11:30</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">11:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Basilique Saint-Seurin</h4><p>Visita 40–45 min</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Seurin%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">14:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Cathédrale Saint-André</h4><p>Poi percorso nel centro elegante</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France%7CLibrairie%20Mollat%2C%20Bordeaux%2C%20France%7CCours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France">Percorso 1</a></div></div></div>
+    <div class="stop"><div class="time">16:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Bordeaux rinascimentale</h4><p>Grosse Cloche → Saint-Éloi → Porte Cailhau → Camille Jullian</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">⌖ Apri percorso</a></div></div></div>
+    <div class="stop"><div class="time">18:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Place de la Bourse</h4><p>Miroir d’Eau e quais</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Place%20de%20la%20Bourse%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked food"><div class="time">20:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Arcada</h4><p>Cena <span class="bookedText">(PRENOTATA)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Arcada%20Restaurant%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-1.ics">+ Calendario</a></div></div></div>
   </div>
+</section>
 
-  <div id="d2" class="dayPanel">
-    <div class="dayHero"><img src="medoc.jpg" alt=""><div class="dayHeroText"><small>Sabato 31 ottobre</small><h2>Médoc & Châteaux</h2></div></div>
-    <div class="timeline">
-      <div class="item"><div class="t">07:35</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Partenza da Bordeaux</b><span>Direzione Pauillac</span></div></div>
-      <div class="item"><div class="t">09:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Château Lynch-Bages</b><span>Premium Visit & Wine Tasting · 2 persone · €25 p.p.</span><div class="linkrow"><a class="maplink" href="event-2.ics">+ Calendario</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">10:30</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Village de Bages</b><span>Passeggiata</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Village%20de%20Bages%2C%20Pauillac%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">11:15</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Pauillac</b><span>Lungofiume</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Pauillac%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">12:15</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Café Lavinal</b><span>Pranzo prenotato</span><div class="linkrow"><a class="maplink" href="event-3.ics">+ Calendario</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Lavinal%2C%20Bages%2C%20Pauillac%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">13:30</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Route des Châteaux</b><span>Mouton → Lafite → Cos d’Estournel → Saint-Estèphe → Saint-Julien → Cussac → Lamarque → Margaux → Labarde</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France|Ch%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France|Ch%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France" data-external-map="1">Nord</a><a class="maplink" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France|Cussac-Fort-M%C3%A9doc%2C%20France" data-external-map="1">Centro</a><a class="maplink" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France|Labarde%2C%20France" data-external-map="1">Sud</a></div></div></div>
-      <div class="item"><div class="t">21:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Le Pressoir d’Argent</b><span>Cena prenotata</span><div class="linkrow"><a class="maplink" href="event-4.ics">+ Calendario</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Le%20Pressoir%20d%27Argent%20Gordon%20Ramsay%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-    </div>
-    <div class="featureCard"><img src="dining.jpg" alt=""><div class="featureText"><h3>Le Pressoir d’Argent</h3><p>Alta cucina per chiudere la giornata nel Médoc</p></div></div>
+<section id="d2" class="page">
+  <div class="detailHero"><img src="medoc.jpg" alt=""><button class="back" data-go="days">‹</button></div>
+  <div class="detailTitle"><h2>Sabato 31 ottobre<br>Médoc & Route des Châteaux</h2><p>Una visita strutturata e pomeriggio panoramico</p></div>
+  <div class="timeline">
+    <div class="stop car"><div class="time">07:35</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza dal Tourny</h4><p>≈53–55 km · arrivo 08:40–08:45</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked"><div class="time">09:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Château Lynch-Bages</h4><p>Premium Visit & Wine Tasting · English · 2 persone · 3 vini · €25 p.p. <span class="bookedText">(CONFERMATO)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-2.ics">+ Calendario</a></div></div></div>
+    <div class="stop"><div class="time">10:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Village de Bages</h4><p>Passeggiata</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Village%20de%20Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">11:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Pauillac</h4><p>Lungofiume</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Pauillac%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked food"><div class="time">12:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Café Lavinal</h4><p>Pranzo <span class="bookedText">(PRENOTATO)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Lavinal%2C%20Bages%2C%20Pauillac%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-3.ics">+ Calendario</a></div></div></div>
+    <div class="stop car"><div class="time">13:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Route des Châteaux · Nord</h4><p>Mouton → Lafite → Cos d’Estournel → Saint-Estèphe</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">15:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Saint-Julien → Cussac → Lamarque</h4><p>Tratto centrale e Gironda</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France%7CCussac-Fort-M%C3%A9doc%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">17:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Margaux → Labarde → Bordeaux</h4><p>Ultimo tratto panoramico</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France%7CLabarde%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked food"><div class="time">21:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Le Pressoir d’Argent</h4><p>Cena <span class="bookedText">(PRENOTATA)</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Le%20Pressoir%20d%27Argent%20Gordon%20Ramsay%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-4.ics">+ Calendario</a></div></div></div>
   </div>
+</section>
 
-  <div id="d3" class="dayPanel">
-    <div class="dayHero"><img src="bordeaux.jpg" alt=""><div class="dayHeroText"><small>Domenica 1 novembre</small><h2>Cité du Vin & Saint-Michel</h2></div></div>
-    <div class="timeline">
-      <div class="item"><div class="t">09:45</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Marché des Capucins</b><span>Colazione / mercato</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=March%C3%A9%20des%20Capucins%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">11:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Cité du Vin</b><span>Da prenotare · fascia 11:00–14:00</span><div class="linkrow"><a class="maplink" href="event-5.ics">+ Calendario</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">15:30</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Basilique Saint-Michel</b><span>Tappa flessibile per Ognissanti</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Michel%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-      <div class="item"><div class="t">19:30</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Lume</b><span>Cena prenotata · 3 rue des Faussets</span><div class="linkrow"><a class="maplink" href="event-6.ics">+ Calendario</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Lume%2C%203%20Rue%20des%20Faussets%2C%20Bordeaux%2C%20France" data-external-map="1">⌖ Maps</a></div></div></div>
-    </div>
+<section id="d3" class="page">
+  <div class="detailHero"><img src="cellar.jpg" alt=""><button class="back" data-go="days">‹</button></div>
+  <div class="detailTitle"><h2>Domenica 1 novembre<br>Cité du Vin & Saint-Michel</h2><p>Giornata urbana più rilassata</p></div>
+  <div class="timeline">
+    <div class="stop food"><div class="time">09:45</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Marché des Capucins</h4><p>Mercato · fino alle 10:30</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=March%C3%A9%20des%20Capucins%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop"><div class="time">11:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Cité du Vin</h4><p>11:00–14:00 · <span class="bookedText">DA PRENOTARE</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-5.ics">+ Calendario</a></div></div></div>
+    <div class="stop"><div class="time">15:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Basilique Saint-Michel</h4><p>Tappa flessibile per Ognissanti</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Basilique%20Saint-Michel%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop booked food"><div class="time">19:30</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Lume</h4><p>3 rue des Faussets · <span class="bookedText">PRENOTATO</span></p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Lume%2C%203%20Rue%20des%20Faussets%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a><a class="smallBtn" href="event-6.ics">+ Calendario</a></div></div></div>
   </div>
+</section>
 
-  <div id="d4" class="dayPanel">
-    <div class="dayHero"><img src="bordeaux.jpg" alt=""><div class="dayHeroText"><small>Lunedì 2 novembre</small><h2>Ultima mattina</h2></div></div>
-    <div class="timeline">
-      <div class="item"><div class="t">09:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Ultimo giro</b><span>Grand Théâtre → Triangle d’Or → Place Gambetta</span></div></div>
-      <div class="item"><div class="t">10:15</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Check-out</b><span>Hôtel Majestic</span></div></div>
-      <div class="item"><div class="t">11:10</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Partenza per aeroporto</b><span>Eventuale rifornimento</span><div class="linkrow"><a class="maplink" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving" data-external-map="1">Percorso aeroporto</a></div></div></div>
-      <div class="item"><div class="t">13:00</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Riconsegna auto</b><span>Aeroporto BOD</span><a href="event-7.ics">+ Calendario</a></div></div>
-      <div class="item"><div class="t">14:55</div><div class="dotcol"><span class="dot"></span></div><div class="info"><b>Volo di ritorno</b><span>Fine viaggio</span></div></div>
-    </div>
+<section id="d4" class="page">
+  <div class="detailHero"><img src="bordeaux.jpg" alt=""><button class="back" data-go="days">‹</button></div>
+  <div class="detailTitle"><h2>Lunedì 2 novembre<br>Bordeaux → Aeroporto</h2><p>Ultimo giro e rientro</p></div>
+  <div class="timeline">
+    <div class="stop"><div class="time">09:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Ultimo giro</h4><p>Grand Théâtre → Triangle d’Or → Place Gambetta → shopping</p></div></div>
+    <div class="stop hotel"><div class="time">10:15</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Check-out</h4><p>Hôtel Majestic</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">10:50</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Recupero auto al Tourny</h4><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">⌖ Apri Maps</a></div></div></div>
+    <div class="stop car"><div class="time">11:10</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Partenza aeroporto</h4><p>Eventuale rifornimento 11:45–12:00</p><div class="actions"><a class="mapBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving">⌖ Apri percorso</a></div></div></div>
+    <div class="stop booked"><div class="time">13:00</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Riconsegna auto</h4><p><span class="bookedText">CONFERMATA</span></p><div class="actions"><a class="smallBtn" href="event-7.ics">+ Calendario</a></div></div></div>
+    <div class="stop"><div class="time">14:55</div><div class="rail"><i class="dot"></i></div><div class="stopInfo"><h4>Volo di ritorno</h4><p>Fine viaggio</p></div></div>
+  </div>
+</section>
+
+<section id="bookings" class="page">
+  <div class="head"><h1>Prenotazioni</h1><p>Tutto il viaggio, date e orari</p></div>
+  <div class="list">
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Arcada</h3><p>30 OTT · 20:00 · cena</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
+    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Château Lynch-Bages</h3><p>31 OTT · 09:00 · Premium Visit</p><div class="status">✓ Confermato</div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Café Lavinal</h3><p>31 OTT · 12:15 · 2 persone</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Le Pressoir d’Argent</h3><p>31 OTT · 21:00 · cena</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
+    <div class="listCard"><img src="cellar.jpg" alt=""><div><h3>Cité du Vin</h3><p>1 NOV · 11:00–14:00</p><div style="font-size:9px;color:#b36c0d;font-weight:800">● Da prenotare</div></div><div>›</div></div>
+    <div class="listCard"><img src="dining.jpg" alt=""><div><h3>Lume</h3><p>1 NOV · 19:30 · 3 rue des Faussets</p><div class="status">✓ Prenotato</div></div><div>›</div></div>
+  </div>
+</section>
+
+<section id="hotels" class="page">
+  <div class="head"><h1>Hotel & Logistica</h1><p>Pernottamento, auto e parcheggio</p></div>
+  <div class="list">
+    <div class="hotelCard"><div><div class="date">30 OTT → 2 NOV</div><h3>Hôtel Majestic</h3><p>2 rue de Condé · Bordeaux</p><p>3 notti</p><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=H%C3%B4tel%20Majestic%2C%202%20Rue%20de%20Cond%C3%A9%2C%20Bordeaux%2C%20France">Apri Maps</a></div><img src="bordeaux.jpg" alt=""></div>
+    <div class="hotelCard"><div><div class="date">30 OTT · 09:30</div><h3>Auto a noleggio</h3><p>Ritiro BOD · riconsegna 2 NOV 13:00</p><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France">Apri Maps</a></div><img src="bordeaux.jpg" alt=""></div>
+    <div class="hotelCard"><div><div class="date">30 OTT 11:00 → 2 NOV 11:30</div><h3>INDIGO Tourny</h3><p>Parcheggio definitivo · €78,46</p><a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France">Apri Maps</a></div><img src="bordeaux.jpg" alt=""></div>
   </div>
 </section>
 
 <section id="places" class="page">
-  <div class="topbar"><span class="side left" data-go="home">‹</span><div class="title">Bordeaux & Médoc 2026</div></div>
-  <div class="sectionTitle">Luoghi</div>
-  <div class="placeCard"><img src="bordeaux.jpg" alt=""><div class="placeText"><h3>Bordeaux</h3><p>Centro storico, monumenti e atmosfera</p></div></div>
-  <div class="placeCard"><img src="bordeaux.jpg" alt=""><div class="placeText"><h3>Cité du Vin</h3><p>Esperienza immersiva sul vino</p></div></div>
-  <div class="placeCard"><img src="bordeaux.jpg" alt=""><div class="placeText"><h3>Hôtel Majestic</h3><p>La base del viaggio · 2 rue de Condé</p></div></div>
-  <div class="placeCard"><img src="dining.jpg" alt=""><div class="placeText"><h3>Ristoranti</h3><p>Arcada · Le Pressoir d’Argent · Lume</p></div></div>
-  <div class="placeCard"><img src="medoc.jpg" alt=""><div class="placeText"><h3>Médoc e Châteaux</h3><p>Lynch-Bages · Cos d’Estournel · Margaux · Lamarque · Labarde</p></div></div>
-</section>
-
-<section id="wine" class="page">
-  <div class="topbar"><span class="side left" data-go="home">‹</span><div class="title">Bordeaux & Médoc 2026</div></div>
-  <div class="sectionTitle">Wine Passport</div>
-  <div class="wineHero"><img src="medoc.jpg" alt=""><div class="wineHeroText"><h2>Château Lynch-Bages</h2><p>Pauillac · Grand Cru Classé</p></div></div>
-  <div class="tabs"><button class="tab active">Info</button><button class="tab">Degustazione</button><button class="tab">Note</button></div>
-  <div class="infoCard">
-    <div class="row"><div class="icon">⌖</div><div><b>Pauillac, Médoc</b><span>Visita confermata</span></div></div>
-    <div class="row"><div class="icon">◫</div><div><b>Sabato 31 ottobre 2026</b><span>09:00–10:30</span></div></div>
-    <div class="row"><div class="icon">♟</div><div><b>Premium Visit & Wine Tasting</b><span>2 persone · 3 vini · €25 p.p.</span></div></div>
-    <div class="row"><div class="icon">↗</div><div><b>Sito / Maps</b><span>Apri indicazioni stradali dalla sezione Mappa</span></div></div>
-  </div>
-  <div class="featureCard"><img src="cellar.jpg" alt=""><div class="featureText"><h3>Degustazione</h3><p>Salva qui preferiti e bottiglie da acquistare</p></div></div>
-  <div class="infoCard">
-    <label style="font-size:11px;font-weight:700">Note personali</label>
-    <textarea id="wineNotes" style="margin-top:8px;width:100%;min-height:100px;border:1px solid #e8ddd6;border-radius:12px;padding:10px;font:inherit" placeholder="Vini, annate, prezzi, preferiti…"></textarea>
+  <div class="head"><h1>Vino & Luoghi</h1><p>Cantine, quartieri e tappe principali</p></div>
+  <div class="list">
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France" style="text-decoration:none;color:inherit"><img src="cellar.jpg" alt=""><div><h3>Château Lynch-Bages</h3><p>Pauillac · visita premium</p></div><div>›</div></a>
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France" style="text-decoration:none;color:inherit"><img src="medoc.jpg" alt=""><div><h3>Mouton Rothschild</h3><p>Esterno / foto</p></div><div>›</div></a>
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France" style="text-decoration:none;color:inherit"><img src="medoc.jpg" alt=""><div><h3>Lafite Rothschild</h3><p>Esterno / passaggio</p></div><div>›</div></a>
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France" style="text-decoration:none;color:inherit"><img src="medoc.jpg" alt=""><div><h3>Cos d’Estournel</h3><p>Esterno / foto</p></div><div>›</div></a>
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France" style="text-decoration:none;color:inherit"><img src="medoc.jpg" alt=""><div><h3>Château Margaux</h3><p>Esterno / foto</p></div><div>›</div></a>
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20du%20Vin%2C%20Bordeaux%2C%20France" style="text-decoration:none;color:inherit"><img src="cellar.jpg" alt=""><div><h3>Cité du Vin</h3><p>Domenica 11:00–14:00</p></div><div>›</div></a>
+    <a class="listCard" href="https://www.google.com/maps/search/?api=1&query=Place%20de%20la%20Bourse%2C%20Bordeaux%2C%20France" style="text-decoration:none;color:inherit"><img src="bordeaux.jpg" alt=""><div><h3>Place de la Bourse</h3><p>Venerdì sera</p></div><div>›</div></a>
   </div>
 </section>
 
 <section id="map" class="page">
-  <div class="topbar"><span class="side left" data-go="home">‹</span><div class="title">Bordeaux & Médoc 2026</div></div>
-  <div class="sectionTitle">Mappa</div>
-  <div class="tabs"><button class="tab active">Tutti</button><button class="tab">Châteaux</button><button class="tab">Ristoranti</button></div>
-  <div class="mapCard">
-    <div class="river"></div><div class="mapRoad"></div>
-    <div class="pin" style="top:36px"></div><div class="lab" style="top:30px">Cos d’Estournel</div>
-    <div class="pin" style="top:102px"></div><div class="lab" style="top:96px">Lamarque</div>
-    <div class="pin" style="top:172px"></div><div class="lab" style="top:166px">Cussac-Fort-Médoc</div>
-    <div class="pin" style="top:238px"></div><div class="lab" style="top:232px">Labarde</div>
-    <div style="position:absolute;left:41%;bottom:14px;font-family:Georgia,serif;font-size:18px">Bordeaux</div>
+  <div class="head"><h1>Mappa del viaggio</h1><p>Bordeaux e percorso nel Médoc</p></div>
+  <div class="mapPanel">
+    <div class="river"></div><div class="road"></div>
+    <div class="pin" style="left:44%;top:42px"></div><div class="mlabel" style="left:51%;top:38px">Saint-Estèphe</div>
+    <div class="pin" style="left:40%;top:94px"></div><div class="mlabel" style="left:47%;top:90px">Pauillac / Bages</div>
+    <div class="pin" style="left:47%;top:155px"></div><div class="mlabel" style="left:54%;top:151px">Lamarque</div>
+    <div class="pin" style="left:49%;top:211px"></div><div class="mlabel" style="left:56%;top:207px">Margaux</div>
+    <div class="pin" style="left:52%;top:280px"></div><div class="mlabel" style="left:59%;top:276px">Bordeaux</div>
   </div>
-  <div class="poiList">
-    <a class="poi" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France" style="text-decoration:none;color:inherit" data-external-map="1"><img src="medoc.jpg" alt=""><div><b>Cos d’Estournel</b><span>Saint-Estèphe</span></div><div>›</div></a>
-    <a class="poi" href="https://www.google.com/maps/search/?api=1&query=Cussac-Fort-M%C3%A9doc%2C%20France" style="text-decoration:none;color:inherit" data-external-map="1"><img src="medoc.jpg" alt=""><div><b>Cussac-Fort-Médoc</b><span>Médoc</span></div><div>›</div></a>
-    <a class="poi" href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20de%20Lamarque%2C%20Lamarque%2C%20France" style="text-decoration:none;color:inherit" data-external-map="1"><img src="medoc.jpg" alt=""><div><b>Château Lamarque</b><span>Haut-Médoc</span></div><div>›</div></a>
-    <a class="poi" href="https://www.google.com/maps/search/?api=1&query=Labarde%2C%20France" style="text-decoration:none;color:inherit" data-external-map="1"><img src="medoc.jpg" alt=""><div><b>Labarde</b><span>Médoc</span></div><div>›</div></a>
+  <div class="routeBtns">
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving">Bordeaux → Lynch-Bages <span>Maps ›</span></a>
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France%7CCh%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France">Route des Châteaux · Nord <span>Maps ›</span></a>
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France%7CCussac-Fort-M%C3%A9doc%2C%20France">Route des Châteaux · Centro <span>Maps ›</span></a>
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France%7CLabarde%2C%20France">Route des Châteaux · Sud <span>Maps ›</span></a>
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Cath%C3%A9drale%20Saint-Andr%C3%A9%20de%20Bordeaux%2C%20Bordeaux%2C%20France&destination=Rue%20Sainte-Catherine%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Rue%20Bouffard%2C%20Bordeaux%2C%20France%7CRue%20des%20Remparts%2C%20Bordeaux%2C%20France%7CLibrairie%20Mollat%2C%20Bordeaux%2C%20France%7CCours%20de%20l%27Intendance%2C%20Bordeaux%2C%20France">Passeggiata Bordeaux 1 <span>Maps ›</span></a>
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Place%20Fernand%20Lafargue%2C%20Bordeaux%2C%20France&destination=Place%20Camille%20Jullian%2C%20Bordeaux%2C%20France&travelmode=walking&waypoints=Grosse%20Cloche%2C%20Bordeaux%2C%20France%7C%C3%89glise%20Saint-%C3%89loi%2C%20Bordeaux%2C%20France%7CPorte%20Cailhau%2C%20Bordeaux%2C%20France">Passeggiata Bordeaux 2 <span>Maps ›</span></a>
+    <a class="routeBtn" href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving">Tourny → Aeroporto <span>Maps ›</span></a>
   </div>
-  
-  <div class="doc"><div><b>Bordeaux → Lynch-Bages</b><span>INDIGO Tourny → Château Lynch-Bages</span></div><a href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&travelmode=driving" data-external-map="1">Maps</a></div>
-  <div class="doc"><div><b>Route des Châteaux · nord</b><span>Lynch-Bages → Mouton → Lafite → Cos → Saint-Estèphe</span></div><a href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%A2teau%20Lynch-Bages%2C%20Pauillac%2C%20France&destination=Saint-Est%C3%A8phe%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Mouton%20Rothschild%2C%20Pauillac%2C%20France|Ch%C3%A2teau%20Lafite%20Rothschild%2C%20Pauillac%2C%20France|Ch%C3%A2teau%20Cos%20d%27Estournel%2C%20Saint-Est%C3%A8phe%2C%20France" data-external-map="1">Maps</a></div>
-  <div class="doc"><div><b>Route des Châteaux · centro</b><span>Saint-Estèphe → Saint-Julien → Cussac → Lamarque</span></div><a href="https://www.google.com/maps/dir/?api=1&origin=Saint-Est%C3%A8phe%2C%20France&destination=Lamarque%2C%20France&travelmode=driving&waypoints=Saint-Julien-Beychevelle%2C%20France|Cussac-Fort-M%C3%A9doc%2C%20France" data-external-map="1">Maps</a></div>
-  <div class="doc"><div><b>Route des Châteaux · sud</b><span>Lamarque → Margaux → Labarde → Tourny</span></div><a href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France|Labarde%2C%20France" data-external-map="1">Maps</a></div>
-  <div class="doc"><div><b>Tourny → Aeroporto BOD</b><span>Rientro lunedì 2 novembre</span></div><a href="https://www.google.com/maps/dir/?api=1&origin=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&destination=Bordeaux%20Airport%2C%20M%C3%A9rignac%2C%20France&travelmode=driving" data-external-map="1">Maps</a></div><a href="https://www.google.com/maps/dir/?api=1&origin=Lamarque%2C%20France&destination=Parking%20INDIGO%20Bordeaux%20Tourny%2C%20Bordeaux%2C%20France&travelmode=driving&waypoints=Ch%C3%A2teau%20Margaux%2C%20Margaux-Cantenac%2C%20France|Labarde%2C%20France" data-external-map="1">Maps</a></div>
-</section>
-
-<section id="docs" class="page">
-  <div class="topbar"><span class="side left" data-go="home">‹</span><div class="title">Bordeaux & Médoc 2026</div></div>
-  <div class="sectionTitle">Documenti</div>
-  <div class="subtitle">Prenotazioni, calendario e informazioni pratiche.</div>
-  <div class="doc"><div><b>Hôtel Majestic</b><span>30/10 → 02/11 · 2 rue de Condé</span></div><span>✓</span></div>
-  <div class="doc"><div><b>INDIGO Tourny</b><span>30/10 11:00 → 02/11 11:30 · €78,46</span></div><span>✓</span></div>
-  <div class="doc"><div><b>Arcada</b><span>30/10 · 20:00</span></div><a href="event-1.ics">ICS</a></div>
-  <div class="doc"><div><b>Château Lynch-Bages</b><span>31/10 · 09:00</span></div><a href="event-2.ics">ICS</a></div>
-  <div class="doc"><div><b>Café Lavinal</b><span>31/10 · 12:15</span></div><a href="event-3.ics">ICS</a></div>
-  <div class="doc"><div><b>Le Pressoir d’Argent</b><span>31/10 · 21:00</span></div><a href="event-4.ics">ICS</a></div>
-  <div class="doc"><div><b>Cité du Vin</b><span>01/11 · 11:00 · da prenotare</span></div><a href="event-5.ics">ICS</a></div>
-  <div class="doc"><div><b>Lume</b><span>01/11 · 19:30</span></div><a href="event-6.ics">ICS</a></div>
-  <div class="doc"><div><b>Riconsegna auto</b><span>02/11 · 13:00</span></div><a href="event-7.ics">ICS</a></div>
-  <div class="note">Versione 6.2: collegamenti corretti e percorsi Google Maps separati in tratte compatibili anche su iPhone.</div>
+  <div class="noteBox"><b>Link Maps:</b> sono normali collegamenti HTTPS, senza popup e senza JavaScript. Il service worker non intercetta siti esterni.</div>
 </section>
 
 <nav class="bottom">
-  <button class="nav active" data-page="home"><i>⌂</i>Home</button>
-  <button class="nav" data-page="days"><i>◫</i>Giorni</button>
-  <button class="nav" data-page="places"><i>⌖</i>Luoghi</button>
-  <button class="nav" data-page="wine"><i>♜</i>Wine</button>
-  <button class="nav" data-page="map"><i>•••</i>Mappa</button>
+  <button class="nav active" data-page="home"><b>⌂</b>Home</button>
+  <button class="nav" data-page="days"><b>▣</b>Giorni</button>
+  <button class="nav" data-page="map"><b>⌖</b>Mappa</button>
+  <button class="nav" data-page="bookings"><b>☷</b>Altro</button>
 </nav>
 </div>
 
@@ -261,27 +216,12 @@ const nav=[...document.querySelectorAll('.nav')];
 function go(id){
   pages.forEach(p=>p.classList.toggle('active',p.id===id));
   nav.forEach(b=>b.classList.toggle('active',b.dataset.page===id));
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo(0,0);
 }
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
-document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();go(el.dataset.go)}));
-document.querySelectorAll('.dayBtn').forEach(btn=>btn.addEventListener('click',()=>{
-  document.querySelectorAll('.dayBtn').forEach(x=>x.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.dayPanel').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.day));
-}));
-const wn=document.getElementById('wineNotes');
-if(wn){wn.value=localStorage.getItem('bdx6_wineNotes')||'';wn.addEventListener('input',()=>localStorage.setItem('bdx6_wineNotes',wn.value));}
-
-document.addEventListener('click', function(e){
-  const a = e.target.closest('a[data-external-map="1"]');
-  if(!a) return;
-  e.preventDefault();
-  const url = a.getAttribute('href');
-  if(url) window.location.assign(url);
-});
-
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.go)}));
+document.querySelectorAll('[data-detail]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.dataset.detail)}));
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body>
 </html>
